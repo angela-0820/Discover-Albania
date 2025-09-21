@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin – Discover Albania</title>
+  <meta name="description" content="Admin dashboard to review and manage reservations for Discover Albania." />
+
+  <!-- Fonts dhe Bootstrap -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+  <!-- CSS i personalizuar !-->
+  <style>
+    :root {
+      --bg: #0b1224;
+      --ink: #eaf1ff;
+      --muted: #9fb3d3;
+      --g1: #db2777;
+      --g2: #f59e0b;
+      --accent: #ffc107;
+    }
+
+    body {
+      font-family: Poppins, system-ui, Arial, sans-serif;
+      background: #0a0f20;
+      color: var(--ink);
+      padding-top: 80px;
+      line-height: 1.5;
+    }
+
+    .navbar.bg-dark {
+      background: rgba(10, 15, 32, .85) !important;
+      backdrop-filter: saturate(160%) blur(10px);
+    }
+
+    .navbar-brand span {
+      color: var(--accent);
+    }
+
+    .subhero {
+      min-height: 34vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: #fff;
+      background-image: linear-gradient(135deg, rgba(219, 39, 119, .8), rgba(245, 158, 11, .8)),
+        linear-gradient(180deg, rgba(6, 8, 15, .2), rgba(6, 8, 15, .6)),
+        url('assets/images/lake.jpeg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .03));
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 16px;
+      padding: 1.2rem;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .35);
+    }
+
+    .table thead th {
+      color: #fff;
+      background: linear-gradient(90deg, var(--g1), var(--g2));
+      border-bottom: 1px solid rgba(255, 255, 255, .15);
+    }
+
+    .badge-destination {
+      background: rgba(219, 39, 119, .22);
+      border: 1px solid rgba(255, 255, 255, .18);
+      color: #ffeaf3;
+      border-radius: 999px;
+      padding: .35rem .6rem;
+    }
+
+    .form-control,
+    .form-select {
+      background: #0f1830;
+      color: #eaf1ff;
+      border: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .btn-brand {
+      border: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--g1), var(--g2));
+      color: #1a0f05;
+      font-weight: 700;
+    }
+
+    .site-footer-neo {
+      background: #0a1021;
+      color: #cfe1ff;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .site-footer-neo .footer-wave path {
+      fill: #0a1021;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body class="theme-admin theme-sunset">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" aria-label="Main navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <i class="bi bi-globe-americas" aria-hidden="true"></i>
+        <strong><span>Discover</span> Albania</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door"></i> Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="reservation.html"><i class="bi bi-calendar-check"></i>
+              Reservation</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown"><i
+                class="bi bi-person-gear"></i> Admin</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item active" href="admin.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+              </li>
+              <li><a class="dropdown-item" href="services.html"><i class="bi bi-tools"></i> Manage Services</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><button class="dropdown-item" id="dropdownLogoutBtn" type="button"><i
+                    class="bi bi-box-arrow-right"></i> Logout</button></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Subhero -->
+  <header class="subhero">
+    <div class="container py-5 text-center">
+      <h1 class="display-6 fw-bold">Admin Dashboard</h1>
+      <p class="lead">Review and manage reservations in one place.</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- Login -->
+    <section class="container" id="loginBox" style="max-width:520px; margin-top:2rem;">
+      <div class="panel">
+        <h2 class="h5 text-center mb-2"><i class="bi bi-shield-lock"></i> Admin Login</h2>
+        <!-- Username:admin  password:1234</p> -->
+        <form id="loginForm" novalidate>
+          <div class="mb-3">
+            <label class="form-label" for="adminUser">Username</label>
+            <input id="adminUser" name="username" class="form-control" type="text" required placeholder="admin"
+              autocomplete="username" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="adminPass">Password</label>
+            <input id="adminPass" name="password" class="form-control" type="password" required placeholder="1234"
+              autocomplete="current-password" />
+          </div>
+          <button class="btn btn-brand w-100" type="submit"><i class="bi bi-box-arrow-in-right me-1"></i> Login</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Panel -->
+    <section class="container hidden" id="adminPanel" style="margin-top:2rem;">
+      <div class="panel mb-3">
+        <div class="d-flex flex-wrap align-items-center gap-2">
+          <h2 class="h5 m-0 flex-grow-1"><i class="bi bi-speedometer2"></i> Reservation Dashboard</h2>
+          <button class="btn btn-outline-light" id="refreshBtn" type="button"><i
+              class="bi bi-arrow-clockwise me-1"></i>Refresh</button>
+          <button class="btn btn-outline-light" id="exportBtn" type="button"><i class="bi bi-download me-1"></i>Export
+            CSV</button>
+          <button class="btn btn-outline-danger" id="logoutBtn" type="button"><i
+              class="bi bi-box-arrow-right me-1"></i>Logout</button>
+        </div>
+        <div class="row g-3 mt-2">
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-text" id="searchLabel"><i class="bi bi-search"></i></span>
+              <input id="searchInput" class="form-control" placeholder="Search…" aria-labelledby="searchLabel" />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <select id="destinationFilter" class="form-select">
+              <option value="">All destinations</option>
+              <option>Valbona</option>
+              <option>Ksamil</option>
+              <option>Lake Komani</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <select id="sortSelect" class="form-select">
+              <option value="date:desc">Sort by Date (newest)</option>
+              <option value="date:asc">Sort by Date (oldest)</option>
+              <option value="name:asc">Sort by Name (A–Z)</option>
+              <option value="name:desc">Sort by Name (Z–A)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Destination</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="reservationTable"></tbody>
+          </table>
+        </div>
+        <p class="text-muted small mt-2" id="emptyState" style="display:none;">No reservations yet.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer-neo mt-5">
+    <div class="footer-wave">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,64 C240,120 480,0 720,48 C960,96 1200,96 1440,32 L1440,120 L0,120 Z"></path>
+      </svg>
+    </div>
+    <div class="container py-4 text-center">
+      <small>© <span id="year"></span> Discover Albania.</small>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services – Discover Albania</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+  <style>
+    :root{ --ink:#eaf1ff; --muted:#9fb3d3; --g1:#06b6d4; --g2:#f97316; --accent:#ffc107; }
+    body{
+      font-family:Poppins,system-ui,Arial,sans-serif;
+      background:#0a0f20; color:var(--ink); padding-top:80px; line-height:1.5;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    .navbar.bg-dark{background:rgba(10,15,32,.85)!important;backdrop-filter:saturate(160%) blur(10px);}
+    .navbar-brand span{color:var(--accent)}
+
+    .subhero{
+      min-height:34vh; display:grid; place-items:center; text-align:center; color:#fff;
+      background-image:
+        linear-gradient(135deg,rgba(6,182,212,.8),rgba(249,115,22,.8)),
+        linear-gradient(180deg,rgba(6,8,15,.2),rgba(6,8,15,.6)),
+        url('assets/images/ksamil.jpg');
+      background-size:cover; background-position:center;
+    }
+    .subhero h1{ font-weight:800; text-shadow:0 12px 30px rgba(0,0,0,.6); }
+
+    .panel{
+      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:1.2rem;
+      box-shadow:0 18px 44px rgba(0,0,0,.35);
+    }
+
+    .btn-brand{
+      border:0; border-radius:14px;
+      background:linear-gradient(135deg,var(--g1),var(--g2)); color:#041014; font-weight:700;
+    }
+
+    .table thead th{
+      color:#fff; background:linear-gradient(90deg,var(--g1),var(--g2));
+      border-bottom:1px solid rgba(255,255,255,.15);
+    }
+
+    .form-control,.form-select{
+      background:#0f1830; color:#eaf1ff; border:1px solid rgba(255,255,255,.12);
+    }
+
+    .site-footer-neo{background:#0a1021; color:#cfe1ff; border-top:1px solid rgba(255,255,255,.08);}
+    .site-footer-neo .footer-wave path{fill:#0a1021}
+  </style>
+</head>
+<body class="theme-services theme-riviera">
+ 
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" aria-label="Main navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <i class="bi bi-globe-americas" aria-hidden="true"></i>
+        <strong><span>Discover</span> Albania</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door" aria-hidden="true"></i> Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="reservation.html"><i class="bi bi-calendar-check" aria-hidden="true"></i> Reservation</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-gear" aria-hidden="true"></i> Admin
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="admin.html"><i class="bi bi-speedometer2" aria-hidden="true"></i> Dashboard</a></li>
+              <li><a class="dropdown-item active" href="services.html"><i class="bi bi-tools" aria-hidden="true"></i> Manage Services</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SUBHERO -->
+  <header class="subhero">
+    <div class="container py-5">
+      <h1 class="display-6 fw-bold text-center">Manage Services</h1>
+      <p class="lead text-center">Keep your offerings tidy and attractive.</p>
+    </div>
+  </header>
+
+  <main>
+    <!--LISTA E SHERBIMEVE- Panel me tabele dhe modal per shtim/ndryshim-->
+    <section class="container my-5" aria-label="Services manager">
+      <div class="panel">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <h2 class="h5 fw-bold m-0">Your Services</h2>
+          <button class="btn btn-brand btn-sm" data-bs-toggle="modal" data-bs-target="#serviceModal" type="button">
+            <i class="bi bi-plus-circle me-1" aria-hidden="true"></i> Add Service
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table align-middle" id="servicesTable">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col" style="width:120px;">Price (€)</th>
+                <th scope="col" style="width:140px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <hr class="mt-3" style="border-color:rgba(255,255,255,.1)" />
+        <p class="text-muted small m-0">
+          <i class="bi bi-info-circle" aria-hidden="true"></i>
+          Demo only — connect a backend to persist changes.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL: Add*edit service -->
+  <div class="modal fade" id="serviceModal" tabindex="-1" aria-hidden="true" aria-labelledby="serviceModalTitle">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" id="serviceForm" novalidate>
+        <div class="modal-header">
+          <h5 class="modal-title" id="serviceModalTitle">Add Service</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close modal"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="editingIndex" value="-1" />
+          <div class="mb-3">
+            <label class="form-label" for="svcName">Service Name</label>
+            <input id="svcName" name="name" class="form-control" required placeholder="e.g., City Tour in Tirana" autocomplete="off" />
+            <div class="invalid-feedback">Please enter a name.</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="svcDesc">Description</label>
+            <textarea id="svcDesc" name="desc" class="form-control" rows="3" required autocomplete="off"></textarea>
+            <div class="invalid-feedback">Please add a short description.</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="svcPrice">Price (€)</label>
+            <input id="svcPrice" name="price" type="number" min="0" step="1" inputmode="numeric" class="form-control" required autocomplete="off" />
+            <div class="invalid-feedback">Please set a valid price.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
+          <button class="btn btn-brand" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer-neo mt-5">
+    <div class="footer-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" focusable="false">
+        <path d="M0,64 C240,120 480,0 720,48 C960,96 1200,96 1440,32 L1440,120 L0,120 Z"></path>
+      </svg>
+    </div>
+    <div class="container py-4 text-center">
+      <small>© <span id="year"></span> Discover Albania.</small>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+</body>
+</html>
